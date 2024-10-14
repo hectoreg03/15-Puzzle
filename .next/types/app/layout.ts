@@ -1,4 +1,4 @@
-// File: C:\Users\CIAC\Downloads\Hector_Eguiarte\keyboard-puzzle\src\app\layout.tsx
+// File: C:\Users\CIAC\Documents\GitHub\15-Puzzle\src\app\layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

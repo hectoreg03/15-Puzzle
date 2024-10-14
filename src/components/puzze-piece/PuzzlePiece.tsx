@@ -4,13 +4,12 @@ import './PuzzlePiece.scss';
 
 export interface IPieceProps {
     number: number,
-    width: number,
-    height: number,
     position: {x: number, y: number},
 }
 
 interface IPuzzlePieceProps {
     offset: number,
+    pieceSize: number,
     focused: boolean,
     pieceProps: IPieceProps,
     last: boolean,
@@ -36,8 +35,8 @@ export default function PuzzlePiece(props: IPuzzlePieceProps) {
 
     const {x, y} = pieceProps.position;
 
-    const left = props.offset + (x * pieceProps.width)  + 'px';
-    const top = props.offset + (y * pieceProps.height)  + 'px';
+    const left = props.offset + (x * props.pieceSize)  + 'px';
+    const top = props.offset + (y * props.pieceSize)  + 'px';
 
     return (
         <div className={className} style={{left, top}}>

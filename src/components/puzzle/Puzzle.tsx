@@ -20,12 +20,11 @@ export default function Puzzle(props: IPuzzleProps) {
 
     const padding = 16;
 
-    const pieceWidth = 102;
-    const pieceHeight = pieceWidth;
+    const [pieceSize, setPieceSize]= useState<number>(getPieceSize());
     const mov = [[1,0],[-1,0],[0,1],[0,-1]];
 
-    const width = columns * pieceWidth;
-    const height = rows * pieceHeight;
+    const width = columns * pieceSize;
+    const height = rows * pieceSize;
 
     const [position, setPosition] = useState<{x: number, y: number}>({x: 0, y: 0});
     const [blankPosition, setBlankPosition] = useState<{x: number, y: number}>({x: columns - 1, y: rows - 1});
@@ -80,6 +79,12 @@ export default function Puzzle(props: IPuzzleProps) {
 
     useEffect(
         () => {
+            setPieceSize(getPieceSize());
+        }, [pieces],
+    )
+
+    useEffect(
+        () => {
 
             document.documentElement.setAttribute('data-theme',theme);
         }, [theme],
@@ -92,6 +97,7 @@ export default function Puzzle(props: IPuzzleProps) {
                      pieces.map((piece, index) => (
                         <PuzzlePiece 
                             offset={padding}
+                            pieceSize={pieceSize}
                             focused={isFocused(piece.position)} 
                             last={piece.number === pieces.length} 
                             nextToBlank={(isNextToBlank(piece.position))} 
@@ -186,8 +192,6 @@ export default function Puzzle(props: IPuzzleProps) {
 
             return ({
                 number: item, 
-                height: pieceHeight,
-                width: pieceWidth,
                 position, 
             });
         });
@@ -199,5 +203,17 @@ export default function Puzzle(props: IPuzzleProps) {
 
         return c;
 
+    }
+    function getPieceSize(){
+        const pieces = document.getElementsByClassName('PuzzlePiece-root');
+        if(pieces.length === 0)return 102;
+        const piece = pieces.item(0)!;
+        const style = getComputedStyle(piece);
+        const size = style.getPropertyValue('--piece-size');
+        const sizeNumber = parseInt(size.replace('px',''));
+        const border = style.getPropertyValue('--border-width');
+        const borderNumber = parseInt(border.replace('px',''))*2;
+        console.log(size);
+        return sizeNumber+borderNumber;
     }
 }

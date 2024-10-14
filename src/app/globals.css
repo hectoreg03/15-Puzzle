@@ -33,7 +33,12 @@ body {
 .align-center {
   align-items: center;
 }
-
+@media (prefers-color-scheme: dark) {
+  :root{
+    --background: #353535;
+  }
+  
+}
 [data-theme='dark']{
   --background: #282a36;
   --foreground: #f8f8f2;

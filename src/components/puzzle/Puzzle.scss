@@ -1,0 +1,46 @@
+.Puzzle-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    padding: 16px;
+
+    .Puzzle-table {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        border-radius: 16px;
+        margin-bottom: 32px;
+    }
+
+    .Puzzle-legend {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        border-radius: 16px;
+        font-size: 0.9rem;
+        color: var(--foreground);
+        .Puzzle-legend-key {
+            background-color: white;
+            color: black;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            height: 20px;
+            padding: 0 4px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-right: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
